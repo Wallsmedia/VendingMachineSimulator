@@ -1,0 +1,49 @@
+﻿{
+  "ChangeWalletConfig": [ // the configuration section for a wallet change each nested  scope block contains exact coin section in change deposit that match to POCO "CoinChangeDeposit"
+    {
+      "Nominal": 5,
+      "Number": 50
+    },
+    {
+      "Nominal": 10,
+      "Number": 50
+    },
+    {
+      "Nominal": 20,
+      "Number": 50
+    },
+    {
+      "Nominal": 50,
+      "Number": 50
+    }
+  ],
+
+  "ProductStockConfig": [ // the product stock section each nested  scope block contains exact product description that match to POCO "ProductToSell"
+    {
+      "Title": "Water 0.33",
+      "Cost": 15,
+      "NumberInStock": 20
+    },
+    {
+      "Title": "Cola 0.33",
+      "Cost": 20,
+      "NumberInStock": 20
+    },
+    {
+      "Title": "Pensi 0.33",
+      "Cost": 35,
+      "NumberInStock": 20
+    },
+    {
+      "Title": "Crisp 120g",
+      "Cost": 55,
+      "NumberInStock": 20
+    },
+    {
+      "Title": "Mars 60g",
+      "Cost": 70,
+      "NumberInStock": 20
+    }
+  ]
+
+}
