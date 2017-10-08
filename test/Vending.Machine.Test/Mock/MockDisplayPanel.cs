@@ -12,14 +12,15 @@ using Vending.Machine.Abstraction;
 
 namespace Vending.Machine.Test.Mock
 {
-        public class MockDisplayPanel: IDisplayPanel
-        {
-            public List<string> DisplayList { get; } = new List<string>();
-            public void DisplayMessage(string message)
-            {
-                DisplayList.Add(message);
-            }
-        }
 
-    
+    public class MockDisplayPanel : IDisplayPanel
+    {
+        public List<string> DisplayList { get; } = new List<string>();
+        public void DisplayMessage(string message)
+        {
+            DisplayList.Add(message);
+        }
+    }
+
+
 }
