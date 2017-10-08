@@ -43,10 +43,8 @@ namespace Vending.Machine.Console
         /// <param name="readKeypadInput">The key pad input.</param>
         /// <param name="productRepository">The product repository.</param>
         /// <param name="vendingMessageRepository">The message repository.</param>
-        public OrderPanel(IDisplayPanel displayPanel,
-            IReadKeypadInput readKeypadInput,
-            IProductRepository productRepository,
-            IVendingMessageRepository vendingMessageRepository)
+        public OrderPanel(IDisplayPanel displayPanel, IReadKeypadInput readKeypadInput,
+                                        IProductRepository productRepository, IVendingMessageRepository vendingMessageRepository)
         {
             _vendingMessageRepository = vendingMessageRepository;
             _displayPanel = displayPanel;
