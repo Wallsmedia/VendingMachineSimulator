@@ -7,6 +7,7 @@
 // Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the Apache 2.0 License.
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,9 +26,13 @@ namespace Vending.Machine.Console
         public List<(INotionValue, int)> WalletList => Repository.Where(r => r.Value > 0).Select(r => (r.Key, r.Value)).ToList();
 
         #region IWalletRepository interface
-        
+
         public int AddToWallet(INotionValue notion, int number)
         {
+            if (notion == null)
+            {
+                throw new ArgumentNullException(nameof(notion));
+            }
             if (number < 0)
             {
                 throw new InvalidDataException(nameof(number));
@@ -43,8 +48,12 @@ namespace Vending.Machine.Console
             return Repository[notion];
         }
 
-        public int RemoveFromValet(INotionValue notion, int number)
+        public int RemoveFromWallet(INotionValue notion, int number)
         {
+            if (notion == null)
+            {
+                throw new ArgumentNullException(nameof(notion));
+            }
             if (!Repository.ContainsKey(notion))
             {
                 throw new InvalidDataException(nameof(notion));

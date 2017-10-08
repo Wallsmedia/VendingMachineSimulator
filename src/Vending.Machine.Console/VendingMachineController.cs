@@ -272,7 +272,7 @@ namespace Vending.Machine.Console
                     count--;
                     changeValue -= money.MoneyValue;
                     changeCollected.AddToWallet(money, 1);
-                    walletRepository.RemoveFromValet(money, 1);
+                    walletRepository.RemoveFromWallet(money, 1);
                 }
                 if (changeValue == Money.Zero)
                 {

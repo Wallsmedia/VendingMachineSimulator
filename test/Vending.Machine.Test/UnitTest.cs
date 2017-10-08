@@ -2,7 +2,7 @@ using Xunit;
 
 namespace Vending.Machine.Test
 {
-    public class UnitTest1
+    public class UnitTest
     {
         [Fact]
         public void Test1()

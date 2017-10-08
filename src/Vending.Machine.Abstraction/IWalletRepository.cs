@@ -28,7 +28,7 @@ namespace Vending.Machine.Abstraction
         /// <param name="notion">The product to sell.</param>
         /// <param name="number">The number to sell.</param>
         /// <returns>The current stock after selling.</returns>
-        int RemoveFromValet(INotionValue notion, int number);
+        int RemoveFromWallet(INotionValue notion, int number);
 
         /// <summary>
         /// Adds to the wallet.

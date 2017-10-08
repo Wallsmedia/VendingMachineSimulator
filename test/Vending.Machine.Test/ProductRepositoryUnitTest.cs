@@ -16,7 +16,7 @@ namespace Vending.Machine.Test
         {
             ProductRepository productRepository = new ProductRepository();
             productRepository.RegisterOrUpdateProduct(PrdA);
-            Assert.Equal(1, productRepository.ProductList.Count);
+            Assert.Single(productRepository.ProductList);
             Assert.Equal(0, productRepository.CountProduct(PrdA.Code));
             Assert.Equal(0, productRepository.CountProduct(PrdB.Code));
 
@@ -24,9 +24,9 @@ namespace Vending.Machine.Test
             Assert.Equal(10, productRepository.CountProduct(PrdA.Code));
 
             productRepository.RegisterOrUpdateProduct(PrdA);
-            Assert.Equal(1, productRepository.ProductList.Count);
+            Assert.Single(productRepository.ProductList);
             Assert.Equal(0, productRepository.CountProduct(PrdA.Code));
-            Assert.Equal(1, productRepository.ProductList.Count);
+            Assert.Single(productRepository.ProductList);
 
             productRepository.RegisterOrUpdateProduct(PrdB);
             Assert.Equal(2, productRepository.ProductList.Count);
