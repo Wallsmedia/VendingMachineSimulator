@@ -78,10 +78,9 @@ namespace Vending.Machine.Console
             }
         }
 
-        public List<Coin> AcceptedCoins => _acceptedCoins.Values.ToList();
-        #endregion
+        public List<Coin> AcceptedCoins => MapToCoins.Values.ToList();
 
-        private readonly Dictionary<char, Coin> _acceptedCoins = new Dictionary<char, Coin>()
+        public Dictionary<char, Coin> MapToCoins { get; } = new Dictionary<char, Coin>()
         {
             {'1', new Coin(5)},
             {'2', new Coin(10)},
@@ -89,6 +88,8 @@ namespace Vending.Machine.Console
             {'4', new Coin(50)},
             {'5', new Coin(100)}
         };
+
+        #endregion
 
         private string msgAccepted = " 1 -[5p]; 2 -[10p]; 3 -[20p]; 4 -[50p]; 5 -[£1.00]";
 
@@ -116,10 +117,10 @@ namespace Vending.Machine.Console
                         DisplayMessageByCode(MessageCode.Ok);
                         CoinAction?.Invoke(PaymentCmdEvent.Cancel, null);
                     }
-                    else if (_acceptedCoins.ContainsKey(code))
+                    else if (MapToCoins.ContainsKey(code))
                     {
                         // valid coin code
-                        var coin = _acceptedCoins[code];
+                        var coin = MapToCoins[code];
                         DisplayMessageByCode(MessageCode.Ok);
                         // signal about payment
                         CoinAction?.Invoke(PaymentCmdEvent.Payment, coin);

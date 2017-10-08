@@ -40,5 +40,16 @@ namespace Vending.Machine.Abstraction.Models
         /// The string to describe the product.
         /// </summary>
         public override string ToString() => $"'{Code}' price:[{Price}]  '{DisplayName}'";
+
+#pragma warning disable 659
+        public override bool Equals(object obj)
+        {
+            if (obj is Product p)
+            {
+                return _code == p.Code && Price == p.Price && DisplayName == p.DisplayName;
+            }
+            return false;
+        }
+#pragma warning restore 659
     }
 }

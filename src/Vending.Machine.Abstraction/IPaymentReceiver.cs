@@ -32,6 +32,11 @@ namespace Vending.Machine.Abstraction
         List<Coin> AcceptedCoins { get; }
 
         /// <summary>
+        /// The code map to a Coin.
+        /// </summary>
+        Dictionary<char, Coin> MapToCoins { get; }
+
+        /// <summary>
         /// The payment action event.
         /// </summary>
         event PaymentAction CoinAction;
