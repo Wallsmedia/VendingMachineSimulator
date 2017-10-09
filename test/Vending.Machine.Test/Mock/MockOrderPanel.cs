@@ -18,7 +18,7 @@ namespace Vending.Machine.Test.Mock
         public event OrderAction OrderAction;
         public event FailtException FailtException;
 
-        public void InvokeCoinAction(OrderCmdEvent cmd, Product obj)
+        public void InvokeOrderAction(OrderCmdEvent cmd, Product obj)
         {
             OrderAction?.Invoke(cmd, obj);
         }

@@ -25,41 +25,42 @@ namespace Vending.Machine.Test
         [Fact]
         public void TestPayment()
         {
+            // setup the tested class instance and dependencies with the test case initialization.
             var mockDisplayPanel = new MockDisplayPanel();
             var mockReadKeypadInput = new MockReadKeypadInput();
             var mockVendingMessageRepository = new MockVendingMessageRepository();
-
             var paymentPanel = new PaymentReceiver(mockDisplayPanel, mockReadKeypadInput, mockVendingMessageRepository);
-
             PaymentCmdEvent cmd = PaymentCmdEvent.Cancel;
             INotionValue objCoin = null;
-
+            // !!! define the simulation key pad command of payment
             var firstCoin = paymentPanel.MapToCoins.First();
             mockReadKeypadInput.SimInputAs = firstCoin.Key;
-
+            // !! define the action test listener
             paymentPanel.CoinAction += (c, p) =>
             {
                 cmd = c;
                 objCoin = p;
+                // off after getting the event
                 paymentPanel.Off();
             };
             bool exception = false;
             paymentPanel.FailtException += ex => exception = true;
+
+            // Test subject Action - on payment receiver and get simulated payment
             paymentPanel.On();
             Thread.Sleep(10000);
 
-            // Should be selected product A
+            // verify - payment
             Assert.False(exception);
             Assert.Equal(PaymentCmdEvent.Payment, cmd);
-
             Assert.Equal(firstCoin.Value, objCoin);
 
+            // verify the  message flow
             List<MessageCode> TestCatchedCodes = new List<MessageCode>
             {
                 MessageCode.MakeYourPayment,
                 MessageCode.Ok
             };
-
             Assert.Equal(TestCatchedCodes, mockVendingMessageRepository.CatchedCodes);
             Assert.Equal(mockVendingMessageRepository.ReturnList, mockDisplayPanel.DisplayList);
         }
@@ -67,40 +68,41 @@ namespace Vending.Machine.Test
         [Fact]
         public void TestCancel()
         {
+            // setup the tested class instance and dependencies with the test case initialization.
             var mockDisplayPanel = new MockDisplayPanel();
             var mockReadKeypadInput = new MockReadKeypadInput();
             var mockVendingMessageRepository = new MockVendingMessageRepository();
-
             var paymentPanel = new PaymentReceiver(mockDisplayPanel, mockReadKeypadInput, mockVendingMessageRepository);
-
             PaymentCmdEvent cmd = PaymentCmdEvent.Payment;
             INotionValue objCoin = null;
-
+            // !!! define the simulation key pad command
             mockReadKeypadInput.SimInputAs = '#';
-
+            // !! define the action test listener
             paymentPanel.CoinAction += (c, p) =>
             {
                 cmd = c;
                 objCoin = p;
+                // off after getting the event
                 paymentPanel.Off();
             };
             bool exception = false;
             paymentPanel.FailtException += ex => exception = true;
+
+            // Test subject Action - on payment receiver and get simulated cancel
             paymentPanel.On();
             Thread.Sleep(10000);
 
-            // Should be selected product A
+            // verify - cancel
             Assert.False(exception);
             Assert.Equal(PaymentCmdEvent.Cancel, cmd);
+            Assert.Null(objCoin);
 
-            Assert.Equal(null, objCoin);
-
+            // verify the  message flow
             List<MessageCode> TestCatchedCodes = new List<MessageCode>
             {
                 MessageCode.MakeYourPayment,
                 MessageCode.Ok
             };
-
             Assert.Equal(TestCatchedCodes, mockVendingMessageRepository.CatchedCodes);
             Assert.Equal(mockVendingMessageRepository.ReturnList, mockDisplayPanel.DisplayList);
 
@@ -108,6 +110,3 @@ namespace Vending.Machine.Test
 
     }
 }
-
-
-
