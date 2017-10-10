@@ -11,10 +11,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Vending.Machine.Abstraction;
 using Vending.Machine.Abstraction.Models;
 using Vending.Machine.Console.Abstract;
+
+[assembly: InternalsVisibleTo("Vending.Machine.Test")]
 
 namespace Vending.Machine.Console
 {
@@ -96,7 +99,7 @@ namespace Vending.Machine.Console
             _coinReceiver.Off();
             _complete.TrySetResult(0);
         }
-        
+
         public void On()
         {
             TryToStartSelling();
@@ -106,7 +109,7 @@ namespace Vending.Machine.Console
 
         private void TryToStartSelling()
         {
-            if (_productRepository.ProductList.Any((p) => _productRepository.CountProduct(p.Code) == 0))
+            if (_productRepository.ProductList.All((p) => _productRepository.CountProduct(p.Code) == 0))
             {
                 VendingMachineState = VendingMachineState.OutOfStock;
                 DisplayMessageByCode(MessageCode.OutOfStock);
@@ -120,6 +123,7 @@ namespace Vending.Machine.Console
         }
 
         readonly PaymentWalletRepository _paymentWalletRepository = new PaymentWalletRepository();
+        internal PaymentWalletRepository PaymentWalletRepository => _paymentWalletRepository;
 
         /// <summary>
         /// Processing payment events from the coin receiver
@@ -214,6 +218,9 @@ namespace Vending.Machine.Console
         }
 
         Stack<Product> _orderedProducts = new Stack<Product>();
+
+        internal List<Product> OrderedProducts => _orderedProducts.ToList();
+
 
         /// <summary>
         /// Process the order actions

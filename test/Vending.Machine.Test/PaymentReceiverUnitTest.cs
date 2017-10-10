@@ -61,8 +61,8 @@ namespace Vending.Machine.Test
                 MessageCode.MakeYourPayment,
                 MessageCode.Ok
             };
-            Assert.Equal(TestCatchedCodes, mockVendingMessageRepository.CatchedCodes);
-            Assert.Equal(mockVendingMessageRepository.ReturnList, mockDisplayPanel.DisplayList);
+            Assert.Equal((IEnumerable<MessageCode>)TestCatchedCodes, (IEnumerable<MessageCode>)mockVendingMessageRepository.CatchedCodes);
+            Assert.Equal((IEnumerable<string>)mockVendingMessageRepository.ReturnList, (IEnumerable<string>)mockDisplayPanel.DisplayList);
         }
 
         [Fact]
@@ -103,9 +103,8 @@ namespace Vending.Machine.Test
                 MessageCode.MakeYourPayment,
                 MessageCode.Ok
             };
-            Assert.Equal(TestCatchedCodes, mockVendingMessageRepository.CatchedCodes);
-            Assert.Equal(mockVendingMessageRepository.ReturnList, mockDisplayPanel.DisplayList);
-
+            Assert.Equal((IEnumerable<MessageCode>)TestCatchedCodes, (IEnumerable<MessageCode>)mockVendingMessageRepository.CatchedCodes);
+            Assert.Equal((IEnumerable<string>)mockVendingMessageRepository.ReturnList, (IEnumerable<string>)mockDisplayPanel.DisplayList);
         }
 
     }

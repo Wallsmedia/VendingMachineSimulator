@@ -69,9 +69,8 @@ namespace Vending.Machine.Test
                 MessageCode.SelectOrder,
                 MessageCode.Ok
             };
-            Assert.Equal(TestCatchedCodes, mockVendingMessageRepository.CatchedCodes);
-            Assert.Equal(mockVendingMessageRepository.ReturnList, mockDisplayPanel.DisplayList);
-
+            Assert.Equal((IEnumerable<MessageCode>)TestCatchedCodes, (IEnumerable<MessageCode>)mockVendingMessageRepository.CatchedCodes);
+            Assert.Equal((IEnumerable<string>)mockVendingMessageRepository.ReturnList, (IEnumerable<string>)mockDisplayPanel.DisplayList);
         }
 
 
@@ -111,8 +110,8 @@ namespace Vending.Machine.Test
 
             // verify the  message flow
             List<MessageCode> TestCatchedCodes = new List<MessageCode> { };
-            Assert.Equal(TestCatchedCodes, mockVendingMessageRepository.CatchedCodes);
-            Assert.Equal(mockVendingMessageRepository.ReturnList, mockDisplayPanel.DisplayList);
+            Assert.Equal((IEnumerable<MessageCode>)TestCatchedCodes, (IEnumerable<MessageCode>)mockVendingMessageRepository.CatchedCodes);
+            Assert.Equal((IEnumerable<string>)mockVendingMessageRepository.ReturnList, (IEnumerable<string>)mockDisplayPanel.DisplayList);
 
         }
     }

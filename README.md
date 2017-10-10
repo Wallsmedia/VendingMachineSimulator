@@ -63,7 +63,7 @@ What makes them to be build and run on Windows OS?
 Verify your answer, just go to 
  ....\bin\Debug\net462\ 
  delete all System.*.dll except  "System.ValueTuple.dll" (c#7.0)
- and run exe again is it works? Ensure your self that you got right answer.
+ and run exe again is it works? Ensure your self that you've got a right answer.
  
  ## Vending Machine (Simulator) Descriptinon
  
